@@ -1,0 +1,590 @@
+@use '../abstracts' as a;
+
+* {
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+#header-section {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: auto;
+  background-color: a.$primary-color;
+  align-items: center;
+  z-index: 1000;
+  padding: 5px 0px;
+}
+
+#header-logo {
+  width: 195px;
+}
+
+#header-logo img {
+  width: 100%;
+  height: auto;
+}
+
+#mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#menu {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.hamburger, .close-hamburger {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.close-hamburger {
+  align-self: self-end;
+  margin-top: 12px;
+  margin-right: 30px;
+}
+
+.hamburger-icon {
+  width: 45px;
+  transition: transform .5s ease;
+}
+
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 225px;
+  background-color: a.$primary-color;
+  font-family: a.$primary-font;
+  box-shadow: -10px 0 10px rgba(0,0,0,0.1);
+  transform: translateX(100%);
+  transition: transform .2s ease-in-out;
+  z-index: 999;
+}
+
+#sidebar.active {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+#sidebar ul {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding-top: 0px;
+  padding-left: 25px;
+  gap: 10px;
+}
+
+#sidebar ul a {
+  font-size: 24px;
+  color: white;
+  display: block;
+  font-weight: 600;
+}
+
+#sidebar a {
+  font-size: 22px;
+  color: white;
+  display: block;
+}
+
+#sidebar .nav-item a:hover, #sidebar .nav-item a:active {
+  color: a.$accent-color;
+  box-shadow: -10px 0 10px rgba(0,0,0,0.1);
+}
+
+#sidebar .nav-item a.active {
+  color: a.$accent-color;
+}
+
+.hamburger {
+  width: 45px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 1000;
+}
+
+.hamburger span {
+  height: 5px;
+  width: 100%;
+  background: a.$accent-color;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(17px);
+  margin-left: 12px;
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transition: none;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-17px);
+  margin-left: 12px;
+}
+
+.nav-item .admin-icon {
+  display: block !important;
+  width: 25px;
+  height: auto;
+}
+
+.admin-icon .cls-1, .admin-icon .cls-2 {
+  fill: white;
+}
+
+.admin-icon:hover .cls-1, .admin-icon:hover .cls-2 {
+  fill: a.$accent-color;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown ul {
+  padding: 0px !important;
+  margin-top: 0px !important;
+  text-align: start;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 6px solid white;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+   z-index: 1000;
+}
+
+.caret-rotate {
+  transform: rotate(90deg);
+}
+
+.menu {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: a.$primary-color;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0;
+}
+
+.menu-open {
+  max-height: 200px;
+  padding: 10px 0;
+}
+
+.menu li {
+  padding: 0px 0px;
+}
+
+.menu li a {
+  font-size: 1.2rem !important;
+  color: white;
+  display: block;
+  white-space: nowrap;
+}
+
+.selected {
+  position: relative;
+  display: inline-block;
+  color: white;
+  cursor: pointer;
+}
+
+.selected:hover {
+  color: a.$accent-color;
+}
+
+.select.active .selected {
+  color: a.$accent-color;
+}
+
+
+.selected.active {
+  color: a.$accent-color;
+}
+
+@media screen and (min-width: 768px) {
+
+  #header-section {
+    position: sticky;
+    top: 0px;
+    height: auto;
+    padding-right: 2vw;
+    padding-left: 2vw;
+    z-index: 1000;
+  }
+
+  .hamburger, .close-hamburger, .hamburger-icon {
+    display: none;
+  }
+
+  #menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  #sidebar, #sidebar.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: static;
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+    width: auto;
+    transform: none;
+    transition: none;
+    margin: 0px;
+  }
+
+  #sidebar ul {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    transform: translateX(0%);
+    margin-top: 0px;
+  }
+
+  #sidebar ul .nav-item a {
+    position: relative;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    cursor: pointer; 
+    padding: 0px 2px;
+    text-decoration: none;
+    // overflow: hidden;        
+  }
+
+  .nav-item a:hover {
+    color: a.$accent-color;
+  }
+
+  .nav-item a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: a.$accent-color;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-item a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-item .admin-icon {
+    margin-top: 0px;
+    width: 20px;
+    height: auto;
+  }
+
+  .icon-link::after {
+    display: none !important;
+  }
+
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown ul {
+    padding: 10px 0px !important;
+    margin-top: 0px !important;
+    text-align: start;
+  }
+
+  .select {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .caret {
+    width: 0;
+    height: 0;
+    border-left: 6px solid white;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  .caret-rotate {
+    transform: rotate(90deg);
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: -17px;
+    width: max-content;
+    min-width: max-content;
+    display: flex;
+    flex-direction: column !important;
+    align-items: flex-start;
+    background-color: a.$primary-color;
+    border-radius: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+    padding: 15px 0px !important;
+  }
+
+  .menu-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .menu li {
+    padding: 0px 15px;
+  }
+
+  .menu li a {
+    font-size: 1.1rem !important;
+    color: white;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .selected {
+    position: relative;
+    display: inline-block;
+    color: white;
+    cursor: pointer;
+  }
+
+  .selected::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background-color: a.$accent-color;
+    transition: width 0.3s ease;
+  }
+
+  .selected:hover {
+    color: a.$accent-color;
+  }
+
+  .selected:hover::after {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  .select.active .selected {
+    color: a.$accent-color;
+  }
+
+  .selected:hover::after {
+    width: 100%;
+  }
+
+  .selected.active {
+    color: a.$accent-color;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+  #header-section {
+    padding: 0px 4vw;
+  }
+
+  #sidebar ul .nav-item a {
+    position: relative;
+    font-size: 26px;
+    padding: 0px 10px;       
+  }
+
+  #header-logo {
+    width: 275px;
+    height: auto;
+    padding: 10px 0px;
+  }
+
+  .nav-item .admin-icon {
+    margin-top: 0px;
+    width: 25px;
+    height: auto;
+  }
+
+    .dropdown {
+    position: relative;
+  }
+
+  .select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .caret {
+    width: 0;
+    height: 0;
+    border-left: 6px solid white;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  .caret-rotate {
+    transform: rotate(90deg);
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: -25px;
+    width: max-content;
+    min-width: max-content;
+    display: flex;
+    flex-direction: column !important;
+    align-items: flex-start;
+    background-color: a.$primary-color;
+    border-radius: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+    padding: 15px 0px !important;
+  }
+
+  .menu-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .menu li {
+    padding: 0px 15px;
+  }
+
+  .menu li a {
+    font-size: 1.2rem !important;
+    color: white;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    height: 2px;
+    width: calc(100% - 15px);
+    background-color: a.$accent-color;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .selected {
+    position: relative;
+    display: inline-block;
+    color: white;
+    cursor: pointer;
+  }
+
+  .selected::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background-color: a.$accent-color;
+    transition: width 0.3s ease;
+  }
+
+  .selected:hover {
+    color: a.$accent-color;
+  }
+
+  .selected:hover::after {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  .select.active .selected {
+    color: a.$accent-color;
+  }
+
+  .selected.active {
+    color: a.$accent-color;
+  }
+
+}
